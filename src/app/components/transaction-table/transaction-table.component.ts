@@ -80,7 +80,6 @@ export class TransactionTableComponent implements AfterViewInit, OnChanges  {
       const matchCategory = filterObj.category ? data.category === filterObj.category : true;
       return matchType && matchCategory;
     };
-
     this.filterForm.valueChanges.pipe(
       takeUntilDestroyed(this._destroyRef)
     ).subscribe(value => {

@@ -43,7 +43,6 @@ export class MoneyTrackerComponent implements OnInit {
     const dialogRef = this._dialog.open(TransactionModalComponent, {
       width: '50%',
     });
-
     dialogRef.afterClosed().subscribe((res: transactionFormData) => {
       this.arrayTransaction = [...this.arrayTransaction, res];
       this.counter = this._calculateBalance(this.arrayTransaction);
