@@ -58,12 +58,12 @@ export class MoneyTrackerComponent implements OnInit {
   }
 
   private _calculateBalance(transactions: transactionFormData[]): number {
-    return transactions.reduce((total: number, transaction: transactionFormData) => {
+    return +transactions.reduce((total: number, transaction: transactionFormData) => {
       const amount = +transaction.amount;
       return transaction.transactionType === 'income'
         ? total + amount
         : total - amount;
-    }, 0);
+    }, 0)?.toFixed(2);
   }
 
   private _getTransaction(): void {
