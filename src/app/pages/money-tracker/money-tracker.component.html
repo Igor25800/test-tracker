@@ -1,0 +1,14 @@
+<div>
+  <h1>Balance: {{counter}}</h1>
+  <div>
+    <button (click)="openDialog()" mat-flat-button>Add</button>
+  </div>
+</div>
+<app-filter-transaction
+  [arrayTransaction]="arrayTransaction"
+  [filterForm]="filterForm"/>
+<app-transaction-table
+  [arrayTransaction]="arrayTransaction"
+  [filterForm]="filterForm"
+  (changeCounterFilter)="changeCounterFilter($event)"
+/>

@@ -1,0 +1,60 @@
+<form class="modal" [formGroup]="formTransaction">
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+    <mat-error *ngIf="formTransaction.get('name')?.hasError('required')">
+      Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Amount</mat-label>
+    <input matInput type="number" formControlName="amount">
+    <mat-error *ngIf="formTransaction.get('amount')?.hasError('required')">
+      Amount is required
+    </mat-error>
+    <mat-error *ngIf="formTransaction.get('amount')?.hasError('pattern')">
+      Amount must be a number with up to 2 decimal places
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Transaction type</mat-label>
+    <mat-select formControlName="transactionType">
+      <mat-option *ngFor="let type of transactionTypes" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formTransaction.get('transactionType')?.hasError('required')">
+      Transaction type is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category">
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formTransaction.get('category')?.hasError('required')">
+      Category is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="formTransaction.get('transactionDate')?.hasError('required')">
+      Date is required
+    </mat-error>
+  </mat-form-field>
+
+  <div class="modal-btn">
+    <button mat-flat-button color="primary" (click)="addTransaction()">Add</button>
+    <button mat-raised-button type="button" (click)="closeModal()">Cancel</button>
+  </div>
+</form>

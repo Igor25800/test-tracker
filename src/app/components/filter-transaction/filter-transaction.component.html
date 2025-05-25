@@ -1,0 +1,22 @@
+<form [formGroup]="filterForm" class="filter-form">
+  <mat-form-field>
+    <mat-label>Transaction type: </mat-label>
+    <mat-select formControlName="transactionType">
+      <mat-option value="">all</mat-option>
+      <mat-option *ngFor="let type of transactionTypes" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Category: </mat-label>
+    <mat-select formControlName="category">
+      <mat-option value="">all</mat-option>
+      <mat-option *ngFor="let type of categories" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
