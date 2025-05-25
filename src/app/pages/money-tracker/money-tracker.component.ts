@@ -9,6 +9,7 @@ import {transactionFormData} from '../../shared/interfaces/transaction-form-data
 import {LocalStorageService} from '../../shared/services/local-storage.service';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {FilterTransactionComponent} from '../../components/filter-transaction/filter-transaction.component';
+import {filter} from 'rxjs';
 
 @Component({
   selector: 'app-money-tracker',
@@ -43,7 +44,9 @@ export class MoneyTrackerComponent implements OnInit {
     const dialogRef = this._dialog.open(TransactionModalComponent, {
       width: '50%',
     });
-    dialogRef.afterClosed().subscribe((res: transactionFormData) => {
+    dialogRef.afterClosed().pipe(
+      filter(res => res)
+    ).subscribe((res: transactionFormData) => {
       this.arrayTransaction = [...this.arrayTransaction, res];
       this.counter = this._calculateBalance(this.arrayTransaction);
       this._localStorageService.setLocalStore(this.arrayTransaction);
