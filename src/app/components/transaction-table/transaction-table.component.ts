@@ -29,7 +29,7 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 export class TransactionTableComponent implements AfterViewInit, OnChanges  {
   @Input() arrayTransaction: transactionFormData[] = [];
   @Input() filterForm!: FormGroup;
-  @Output() changeCounterFilter = new EventEmitter<any>();
+  @Output() changeCounterFilter = new EventEmitter<transactionFormData[]>();
   displayedColumns: string[] = ['name', 'amount', 'category', 'date'];
   dataSource = new MatTableDataSource<transactionFormData>();
   @ViewChild(MatSort) sort!: MatSort;
